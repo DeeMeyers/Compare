@@ -8,9 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 psycopg2-binary = "*"
-python-dotenv = "*"
 gunicorn = "*"
-django-heroku = "*"
+environs = "*"
 
 [requires]
 python_version = "3.8"

@@ -11,8 +11,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
+import environs
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+    USE_S3=(bool, False),)
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'corona',
-        'USER': os.getenv('DBUSER'),
-        'PASSWORD': os.getenv('DBPW'),
+        'USER': env('DBUSER'),
+        'PASSWORD': env('DBPW'),
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -126,6 +132,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
