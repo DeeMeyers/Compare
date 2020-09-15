@@ -33,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['stormy-lake-03816.herokuapp.com', '0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['stormy-lake-03816.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
